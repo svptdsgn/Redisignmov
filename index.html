@@ -491,6 +491,42 @@ body>*{position:relative}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
+
+/* ===== QUIET LIQUID GLASS / FILTER UX ===== */
+:root{--glass-panel:rgba(24,22,29,.66);--glass-line:rgba(255,255,255,.105)}
+body{
+ background-color:#0b0a0e;
+ background-image:
+  radial-gradient(ellipse at 14% 12%,rgba(133,65,77,.19),transparent 34%),
+  radial-gradient(ellipse at 86% 28%,rgba(104,81,143,.16),transparent 36%),
+  radial-gradient(ellipse at 52% 100%,rgba(87,55,76,.10),transparent 42%),
+  linear-gradient(145deg,#121015 0%,#0a090d 52%,#100d13 100%);
+}
+.filters-panel{
+ background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.022));
+ border:1px solid var(--glass-line);border-radius:16px;padding:20px;
+ box-shadow:0 22px 60px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.055);
+ backdrop-filter:blur(24px) saturate(125%);-webkit-backdrop-filter:blur(24px) saturate(125%);
+}
+.filter-tabs-row{padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:14px}
+.filter-tab{border-radius:7px!important;padding:10px 13px!important;font-size:11px!important;letter-spacing:.04em}
+.filter-tab.active{background:rgba(227,107,114,.16)!important;border:1px solid rgba(227,107,114,.35)!important;color:#f5dfe0!important}
+.filter-intro{font-size:12px;line-height:1.65;color:#a9a1aa;padding:0 2px 14px}
+.filter-section-title{font-size:10px;letter-spacing:.15em;color:#e0d7dc}
+.filter-section-header{padding:14px 2px}
+.checkbox-item{border:1px solid transparent;border-radius:8px;padding:9px 10px;font-size:12px}
+.checkbox-item:hover{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.07)}
+.checkbox-item.active{background:rgba(227,107,114,.105);border-color:rgba(227,107,114,.3);color:#fff}
+.checkbox-item.active .checkbox-mark{background:#d77a81;border-color:#d77a81}
+.filters-apply-btn{border-radius:7px;background:linear-gradient(105deg,#c96e76,#a98cbe);color:#160f16;letter-spacing:.03em}
+.reset-filters-btn{font-size:11px}
+.filter-search-wrap input{border-radius:8px}
+.catalog-toolbar .sort-trigger{border-radius:8px}
+.collection-card,.ra-item,.catalog-poster-wrap{border-radius:8px}
+.modal-window{border-radius:12px}
+.option-chip,.submit-btn,.reset-btn,.chat-input-row input,.chat-input-row button{border-radius:8px}
+@media(max-width:800px){.filters-panel{padding:16px;border-radius:12px}}
+
 </style>
 </head>
 <body>
@@ -637,8 +673,8 @@ body>*{position:relative}
     <aside class="filters-panel">
       <div class="filter-tabs-row">
         <div class="filter-tabs">
-          <button class="filter-tab active" onclick="switchFilterTab('main', this)">Основные</button>
-          <button class="filter-tab" onclick="switchFilterTab('extra', this)">Дополнительные</button>
+          <button class="filter-tab active" onclick="switchFilterTab('main', this)">Практичное</button>
+          <button class="filter-tab" onclick="switchFilterTab('extra', this)">По настроению</button>
         </div>
         <button class="filter-search-btn" id="filterSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
       </div>
@@ -647,6 +683,7 @@ body>*{position:relative}
         <input type="text" id="filterSearchInput" placeholder="Найти фильтр...">
       </div>
 
+      <p class="filter-intro">Отметь только то, что действительно важно. Остальное можно оставить как есть.</p>
       <div id="filter-main" class="filter-content active">
         <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Страна</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="countryFilters"></div></div></div>
         <div class="filter-divider"></div>
@@ -657,7 +694,7 @@ body>*{position:relative}
           <label class="checkbox-item"><input type="checkbox" value="after2020"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>После 2020</label>
         </div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Продолжительность</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="runtimeFilters">
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Сколько времени есть?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="runtimeFilters">
           <label class="checkbox-item"><input type="checkbox" value="short"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>До 90 минут</label>
           <label class="checkbox-item"><input type="checkbox" value="medium"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>90–120 минут</label>
           <label class="checkbox-item"><input type="checkbox" value="long"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>Больше 2 часов</label>
@@ -669,7 +706,7 @@ body>*{position:relative}
           <label class="checkbox-item"><input type="checkbox" value="low"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>Ниже 7.0</label>
         </div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Возраст</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content">
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Возрастной рейтинг</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content">
           <div class="checkbox-group" id="ageFilters"></div>
           <div class="filter-divider" style="margin: 12px 0;"></div>
           <div class="filter-toggle-item"><span class="filter-toggle-label">Можно с детьми</span><div class="filter-toggle" onclick="toggleFilterSwitch(this)"></div></div>
@@ -685,7 +722,7 @@ body>*{position:relative}
       </div>
 
       <div id="filter-extra" class="filter-content">
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Настроение</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="moodFilters">
+        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какое настроение хочется?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="moodFilters">
           <label class="checkbox-item"><input type="checkbox" value="anxious"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>😰 Тревожное</label>
           <label class="checkbox-item"><input type="checkbox" value="happy"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>😄 Весёлое</label>
           <label class="checkbox-item"><input type="checkbox" value="romantic"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💕 Романтичное</label>
@@ -694,11 +731,11 @@ body>*{position:relative}
           <label class="checkbox-item"><input type="checkbox" value="mystic"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🔮 Мистичное</label>
         </div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Жанры</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="genreFilters"></div></div></div>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какой жанр интересен?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="genreFilters"></div></div></div>
         <div class="filter-divider"></div>
 
         <!-- ===== СЛУЧАЙ ===== -->
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Случай</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="occasionFilters">
+        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Для какого вечера?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="occasionFilters">
           <label class="checkbox-item"><input type="checkbox" value="family"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👨‍👩‍👧 Семейный вечер</label>
           <label class="checkbox-item"><input type="checkbox" value="bachelorette"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💃 Девичник</label>
           <label class="checkbox-item"><input type="checkbox" value="friends"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👯 С друзьями</label>
@@ -713,11 +750,11 @@ body>*{position:relative}
 
 
   <!-- ===== СЛУЧАЙ ===== -->
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Компания</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="occasionFilters">
-          <label class="checkbox-item"><input type="checkbox" value="family"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👨‍👩‍👧 Одному</label>
+        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">С кем смотришь?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="companyFilters">
+          <label class="checkbox-item"><input type="checkbox" value="alone"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🌙 Один / одна</label>
           <label class="checkbox-item"><input type="checkbox" value="friends"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👯 С друзьями</label>
-          <label class="checkbox-item"><input type="checkbox" value="date"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💕 СО второй половинкой</label>
-          <label class="checkbox-item"><input type="checkbox" value="alone"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🌙 С семьей</label>
+          <label class="checkbox-item"><input type="checkbox" value="date"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💕 На свидании</label>
+          <label class="checkbox-item"><input type="checkbox" value="family"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👨‍👩‍👧 С семьёй</label>
 
         </div></div></div>
         <div class="filter-divider"></div>
@@ -1116,6 +1153,7 @@ body>*{position:relative}
     const moods=getActive('moodFilters'); if(moods.length)f=f.filter(m=>m.moods.some(x=>moods.includes(x)));
     const genres=getActive('genreFilters'); if(genres.length)f=f.filter(m=>m.genres.some(g=>genres.includes(g)));
     const occasions=getActive('occasionFilters'); if(occasions.length)f=f.filter(m=>m.occasions.some(o=>occasions.includes(o)));
+    const company=getActive('companyFilters'); if(company.length)f=f.filter(m=>m.occasions.some(o=>company.includes(o)));
     const settings=getActive('settingFilters'); if(settings.length)f=f.filter(m=>m.settings.some(s=>settings.includes(s)));
     const twists=getActive('twistFilters'); if(twists.length)f=f.filter(m=>m.twists.some(t=>twists.includes(t)));
     const tempos=getActive('tempoFilters'); if(tempos.length)f=f.filter(m=>tempos.includes(m.tempo));
