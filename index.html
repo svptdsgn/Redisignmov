@@ -521,6 +521,10 @@ body{
 .filters-apply-btn{border-radius:7px;background:linear-gradient(105deg,#c96e76,#a98cbe);color:#160f16;letter-spacing:.03em}
 .reset-filters-btn{font-size:11px}
 .filter-search-wrap input{border-radius:8px}
+.catalog-result-count{margin-right:auto;font-size:11px;color:#aaa1ac;letter-spacing:.04em}
+.filter-empty-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:30px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025);color:#eee}
+.filter-empty-state span{font-size:13px;color:#aaa1ac;line-height:1.6}
+.filter-empty-state button{margin-top:4px;padding:10px 15px;border:1px solid rgba(220,135,145,.35);border-radius:7px;background:rgba(220,135,145,.12);color:#f4dfe1;cursor:pointer}
 .catalog-toolbar .sort-trigger{border-radius:8px}
 .collection-card,.ra-item,.catalog-poster-wrap{border-radius:8px}
 .modal-window{border-radius:12px}
@@ -709,7 +713,7 @@ body{
         <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Возрастной рейтинг</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content">
           <div class="checkbox-group" id="ageFilters"></div>
           <div class="filter-divider" style="margin: 12px 0;"></div>
-          <div class="filter-toggle-item"><span class="filter-toggle-label">Можно с детьми</span><div class="filter-toggle" onclick="toggleFilterSwitch(this)"></div></div>
+          <div class="filter-toggle-item"><span class="filter-toggle-label">Можно с детьми</span><div class="filter-toggle" data-filter="kids" onclick="toggleFilterSwitch(this)"></div></div>
         </div></div>
         <div class="filter-divider"></div>
         <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Дополнительно</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group">
@@ -735,7 +739,7 @@ body{
         <div class="filter-divider"></div>
 
         <!-- ===== СЛУЧАЙ ===== -->
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Для какого вечера?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="occasionFilters">
+        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">На какой случай выбираешь?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="occasionFilters">
           <label class="checkbox-item"><input type="checkbox" value="family"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👨‍👩‍👧 Семейный вечер</label>
           <label class="checkbox-item"><input type="checkbox" value="bachelorette"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💃 Девичник</label>
           <label class="checkbox-item"><input type="checkbox" value="friends"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👯 С друзьями</label>
@@ -745,23 +749,6 @@ body{
           <label class="checkbox-item"><input type="checkbox" value="alone"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🌙 На одинокий вечер</label>
           <label class="checkbox-item"><input type="checkbox" value="holiday"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎄 Праздничное</label>
         </div></div></div>
-        <div class="filter-divider"></div>
-
-
-
-  <!-- ===== СЛУЧАЙ ===== -->
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">С кем смотришь?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="companyFilters">
-          <label class="checkbox-item"><input type="checkbox" value="alone"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🌙 Один / одна</label>
-          <label class="checkbox-item"><input type="checkbox" value="friends"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👯 С друзьями</label>
-          <label class="checkbox-item"><input type="checkbox" value="date"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💕 На свидании</label>
-          <label class="checkbox-item"><input type="checkbox" value="family"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👨‍👩‍👧 С семьёй</label>
-
-        </div></div></div>
-        <div class="filter-divider"></div>
-
-
-        
-
         <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Сеттинг</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="settingFilters">
           <label class="checkbox-item"><input type="checkbox" value="space"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🚀 Космос</label>
           <label class="checkbox-item"><input type="checkbox" value="racing"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🏎️ Гонки и скорость</label>
@@ -1101,7 +1088,12 @@ body{
 
   function renderCatalog(movies) {
     const grid=document.getElementById('catalogGrid'); grid.innerHTML='';
-    if(!movies.length){grid.innerHTML='<div class="loader">Фильмы не найдены</div>';return;}
+    const count=document.getElementById('catalogResultCount');
+    if(count) count.textContent=movies.length ? 'Найдено: '+movies.length : 'Ничего не найдено';
+    if(!movies.length){
+      grid.innerHTML='<div class="filter-empty-state"><strong>Пока не нашлось точного совпадения</strong><span>Попробуй снять один из фильтров — так выбор станет шире.</span><button type="button" onclick="resetAllFilters()">Сбросить фильтры</button></div>';
+      return;
+    }
     movies.forEach(m=>{
       const item=document.createElement('div'); item.className='catalog-item';
       item.innerHTML=`
@@ -1139,9 +1131,14 @@ body{
   }
 
   function setupCheckboxHandlers() {
-    document.querySelectorAll('.checkbox-item').forEach(item=>item.addEventListener('click',function(e){ if(e.target.tagName==='INPUT')return; e.preventDefault(); this.classList.toggle('active'); applyFilters(); }));
+    document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(input=>{
+      input.addEventListener('change',()=>{
+        input.closest('.checkbox-item').classList.toggle('active',input.checked);
+        applyFilters();
+      });
+    });
   }
-  function getActive(id){return [...document.querySelectorAll('#'+id+' .checkbox-item.active input')].map(cb=>cb.value);}
+  function getActive(id){return [...document.querySelectorAll('#'+id+' .checkbox-item input:checked')].map(cb=>cb.value);}
 
   function applyFilters() {
     let f=[...movieData];
@@ -1153,7 +1150,8 @@ body{
     const moods=getActive('moodFilters'); if(moods.length)f=f.filter(m=>m.moods.some(x=>moods.includes(x)));
     const genres=getActive('genreFilters'); if(genres.length)f=f.filter(m=>m.genres.some(g=>genres.includes(g)));
     const occasions=getActive('occasionFilters'); if(occasions.length)f=f.filter(m=>m.occasions.some(o=>occasions.includes(o)));
-    const company=getActive('companyFilters'); if(company.length)f=f.filter(m=>m.occasions.some(o=>company.includes(o)));
+    const kidsOnly=document.querySelector('[data-filter="kids"]')?.classList.contains('active');
+    if(kidsOnly)f=f.filter(m=>(parseInt(m.age,10)||18)<=12);
     const settings=getActive('settingFilters'); if(settings.length)f=f.filter(m=>m.settings.some(s=>settings.includes(s)));
     const twists=getActive('twistFilters'); if(twists.length)f=f.filter(m=>m.twists.some(t=>twists.includes(t)));
     const tempos=getActive('tempoFilters'); if(tempos.length)f=f.filter(m=>tempos.includes(m.tempo));
@@ -1166,7 +1164,7 @@ body{
 
   function resetAllFilters(){document.querySelectorAll('.checkbox-item').forEach(i=>{i.classList.remove('active');const inp=i.querySelector('input');if(inp)inp.checked=false;});document.querySelectorAll('.filter-toggle').forEach(t=>t.classList.remove('active'));filteredMovies=movieData;renderSorted();}
   function switchFilterTab(tab,btn){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.filter-content').forEach(c=>c.classList.remove('active'));btn.classList.add('active');document.getElementById('filter-'+tab).classList.add('active');}
-  function toggleFilterSwitch(el){el.classList.toggle('active');}
+  function toggleFilterSwitch(el){el.classList.toggle('active');if(el.dataset.filter==='kids')applyFilters();}
   function toggleFilterSection(h){h.parentElement.classList.toggle('open');}
 
   document.getElementById('filterSearchToggle').addEventListener('click',()=>{const w=document.getElementById('filterSearchWrap');w.classList.toggle('active');if(w.classList.contains('active'))document.getElementById('filterSearchInput').focus();});
