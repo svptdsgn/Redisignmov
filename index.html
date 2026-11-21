@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>МувиМуд — Кино на вечер</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0c;
@@ -398,6 +398,99 @@ body{background:radial-gradient(ellipse at 12% 18%,rgba(130,45,90,.2),transparen
 @media(max-width:800px){.header{height:64px;padding:0 16px}.search-container{margin:0 12px}.hero-section{padding:125px 22px 24px}.hero-title{font-size:clamp(38px,10vw,60px)}.carousel-stage{height:360px}.movie-card{width:210px;height:310px}.movie-card.pos--1{transform:translateX(-125px) scale(.78) rotate(-5deg)}.movie-card.pos-1{transform:translateX(125px) scale(.78) rotate(5deg)}.movie-card.pos--2{transform:translateX(-220px) scale(.6)}.movie-card.pos-2{transform:translateX(220px) scale(.6)}.bottom-controls{gap:8px}.bottom-controls .action-btn-glass,.bottom-controls .ai-chat-btn{font-size:12px;padding:12px 14px}.mood-collections{width:calc(100% - 32px);margin:24px auto 44px}.collection-grid{grid-template-columns:1fr}.collection-card{min-height:160px}.collections-heading{display:block}.collections-heading p{margin-top:8px}.results-list-grid{grid-template-columns:1fr}.random-results-section{padding:22px 14px}.catalog-section{padding:40px 18px}.catalog-layout{grid-template-columns:1fr;gap:22px}}
 @media(max-width:480px){.header{padding:0 10px}.logo-plate{padding:8px 12px}.logo{font-size:13px}.search-container{margin:0 8px}.search-input{height:40px;padding-left:38px;font-size:12px}.search-icon{left:13px;width:15px}.header-actions{gap:5px}.glass-plate{width:36px;height:36px}.glass-plate--avatar{display:none}.carousel-stage{height:320px}.movie-card{width:190px;height:280px}.movie-card.pos--1{transform:translateX(-100px) scale(.72)}.movie-card.pos-1{transform:translateX(100px) scale(.72)}.bottom-controls{max-width:360px}.bottom-controls .arrow-btn{width:38px;height:38px}.bottom-controls .action-btn-glass,.bottom-controls .ai-chat-btn{padding:11px 12px}.movie-info{margin-top:25px}}
 
+
+/* ===== ART DIRECTION / MOVIEMOOD REDESIGN ===== */
+:root{--bg:#09090c;--surface:rgba(255,255,255,.045);--surface-hover:rgba(255,255,255,.085);--text-main:#f4f0ed;--text-muted:#9b969d;--border-color:rgba(236,226,225,.11);--border-light:rgba(236,226,225,.2);--accent:#e36b72;--purple:#a68bd8;--font:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;--coral:#e36b72;--lilac:#a68bd8}
+html{scroll-behavior:smooth}
+body{background-color:#09090c;background-image:radial-gradient(ellipse at 12% 16%,rgba(111,42,54,.16),transparent 32%),radial-gradient(ellipse at 88% 44%,rgba(75,53,105,.12),transparent 34%),linear-gradient(180deg,#111014 0%,#09090c 54%,#0c0b10 100%);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.17;background-image:radial-gradient(rgba(255,255,255,.24) .55px,transparent .7px);background-size:5px 5px;mix-blend-mode:soft-light}
+body>*{position:relative}
+.header{height:78px;padding:0 clamp(18px,4vw,64px);background:linear-gradient(180deg,rgba(9,9,12,.94),rgba(9,9,12,.66) 72%,transparent);border-bottom:1px solid rgba(255,255,255,.035)}
+.logo-plate{border-radius:4px;padding:10px 14px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.14)}
+.logo-plate:hover{transform:none;background:rgba(255,255,255,.08)}
+.logo{text-shadow:none;letter-spacing:.13em;font-size:14px}.logo sup{color:var(--coral)}
+.search-input{border-radius:4px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.12)}
+.search-input:focus{border-color:rgba(227,107,114,.55);box-shadow:0 0 0 3px rgba(227,107,114,.08)}
+.glass-plate{border-radius:4px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.14)}
+.glass-plate:hover{background:rgba(227,107,114,.12);color:#fff}
+.hero-section{width:min(1180px,calc(100% - 64px));max-width:none;padding:clamp(130px,15vw,188px) 0 20px;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:56px;align-items:end}
+.hero-overline{display:flex;align-items:center;gap:12px;margin-bottom:27px;color:#c3b9bb;font-size:10px;font-weight:700;letter-spacing:.2em}
+.overline-mark{width:24px;height:1px;background:var(--coral);display:inline-block}
+.overline-index{margin-left:auto;color:#77717a;font-size:9px;letter-spacing:.14em}
+.hero-title{font-size:clamp(48px,7.4vw,100px);font-weight:500;letter-spacing:-.065em;line-height:.96;margin-bottom:24px}
+.hero-title .line-1{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;color:#d88a8c;letter-spacing:-.055em}
+.hero-title .line-2{display:block;max-width:850px;color:#f3efed}
+.hero-subtitle{font-size:15px;max-width:460px;margin:0;color:#aaa2a6;line-height:1.75}
+.hero-aside{position:relative;padding:0 0 8px 22px;margin-bottom:7px;border-left:1px solid rgba(227,107,114,.6)}
+.hero-aside-rule{display:block;width:26px;height:1px;background:var(--coral);margin-bottom:18px}
+.hero-aside-label,.hero-aside-note{font-size:9px;letter-spacing:.2em;font-weight:700;color:#c78c91}
+.hero-aside p{font-family:'Playfair Display',Georgia,serif;font-size:21px;line-height:1.35;color:#e8dfe0;margin:12px 0 22px}
+.hero-aside-note{color:#77717a;font-size:8px}
+.main-content{padding:10px 20px 26px}.carousel-container{width:min(1160px,100%)}
+.carousel-stage{height:clamp(340px,39vw,490px);isolation:isolate}
+.carousel-stage:before{content:"";position:absolute;width:min(660px,75vw);height:min(310px,38vw);left:50%;top:50%;transform:translate(-50%,-48%);z-index:-2;border:1px solid rgba(220,179,181,.14);border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.012),0 0 0 70px rgba(255,255,255,.009)}
+.carousel-stage:after{content:"MM / FILM SELECTION";position:absolute;right:2%;bottom:10%;z-index:-1;font-size:8px;letter-spacing:.22em;color:rgba(230,210,212,.36)}
+.movie-card{border-radius:5px;border-color:rgba(255,255,255,.2);box-shadow:0 34px 70px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.04)}
+.movie-card.pos-0{box-shadow:0 38px 80px rgba(0,0,0,.72),0 0 70px rgba(180,82,96,.14)}
+.movie-info{margin-top:22px}.movie-title{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:500;letter-spacing:-.02em}.movie-vibe{font-size:12px;letter-spacing:.04em;color:#a69ba1}
+.bottom-controls{margin-top:26px;gap:10px}.arrow-btn{border-radius:3px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.14);color:#b9adb1}
+.arrow-btn:hover{background:rgba(227,107,114,.15);border-color:rgba(227,107,114,.4)}
+.action-btn-glass,.ai-chat-btn{min-height:48px;border-radius:3px;padding:13px 22px;font-size:12px;letter-spacing:.045em;font-weight:700;backdrop-filter:blur(18px)}
+.action-btn-glass{background:#c95e68;border:1px solid #df7a80;color:#fff;box-shadow:0 8px 26px rgba(160,55,67,.18)}
+.action-btn-glass:hover{background:#dd7078;transform:translateY(-2px)}
+.ai-chat-btn{background:rgba(255,255,255,.035);border:1px solid rgba(190,164,215,.48);color:#e5d9f3}
+.ai-chat-btn:hover{background:rgba(166,139,216,.12);border-color:#a68bd8;transform:translateY(-2px)}
+.random-results-section{border-top-color:rgba(255,255,255,.12)}
+.random-results-title,.catalog-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3vw,38px);font-weight:500;letter-spacing:-.035em}
+.ra-item{border-radius:5px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.1)}
+.ra-item:hover{border-color:rgba(227,107,114,.45);transform:translateY(-3px)}.ra-poster{border-radius:3px}
+.modal-window{border-radius:6px;background:rgba(15,13,18,.97);border-color:rgba(255,255,255,.17);box-shadow:0 28px 100px rgba(0,0,0,.6)}
+.modal-close{border-radius:3px}.option-chip{border-radius:3px}
+.option-chip.active{background:rgba(227,107,114,.18);border-color:rgba(227,107,114,.65);color:#fff}
+.submit-btn,.eye-watch-btn{border-radius:3px;background:#c95e68;color:#fff}
+.reset-btn,.chat-input-row input,.chat-input-row button{border-radius:3px}
+.chat-input-row button{background:#c95e68;color:#fff}
+.mood-collections{width:min(1180px,calc(100% - 64px));margin:58px auto 76px}
+.section-kicker{color:#d18a91;font-size:9px;letter-spacing:.22em}
+.collections-heading{align-items:end;margin-bottom:25px}
+.collections-heading h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:500;letter-spacing:-.035em}
+.collections-heading p{font-size:12px;line-height:1.7;color:#9d969e}
+.collection-grid{gap:13px}
+.collection-card{min-height:250px;padding:25px;border-radius:4px;border-color:rgba(255,255,255,.12);background:#17141a;transition:transform .35s ease,border-color .35s ease}
+.collection-card:before{filter:saturate(.72) brightness(.78);transform:scale(1.02);transition:transform .6s ease,filter .6s ease}
+.collection-card:after{background:linear-gradient(0deg,rgba(8,7,12,.96) 0%,rgba(8,7,12,.45) 62%,rgba(8,7,12,.08) 100%)}
+.collection-card:hover{transform:translateY(-4px);border-color:rgba(227,107,114,.42)}
+.collection-card:hover:before{transform:scale(1.07);filter:saturate(.95) brightness(.9)}
+.collection-card .collection-symbol{font-family:'Playfair Display',Georgia,serif;font-size:64px;font-weight:400;right:25px;top:18px;color:rgba(255,255,255,.78)}
+.collection-card h3{font-family:'Playfair Display',Georgia,serif;font-size:25px;font-weight:500}
+.collection-card p{font-size:12px;color:rgba(255,255,255,.72)}
+.collection-card span{color:#e28b91;font-size:9px;letter-spacing:.15em}
+.catalog-section{max-width:1280px;border-top:1px solid rgba(255,255,255,.1)}.catalog-title{margin-bottom:28px}.catalog-layout{gap:34px}
+.catalog-poster-wrap{border-radius:4px}.catalog-meta-title{font-family:'Playfair Display',Georgia,serif;font-weight:500}
+.mood-radar{border-radius:4px;background:rgba(166,139,216,.07);border-color:rgba(166,139,216,.24)}.radar-chip{border-radius:3px}
+.overlay{background:rgba(4,3,7,.84)}.eye-modal{border-radius:5px}
+@media(max-width:800px){.hero-section{width:calc(100% - 40px);padding:122px 0 14px;grid-template-columns:minmax(0,1fr) 160px;gap:24px}.hero-title{font-size:clamp(48px,9vw,72px)}.hero-aside p{font-size:18px}.carousel-stage:after{right:1%;bottom:5%}.mood-collections{width:calc(100% - 40px)}.collection-card{min-height:210px}}
+@media(max-width:560px){
+.header{height:62px;padding:0 12px}.logo-plate{padding:8px 10px}.logo{font-size:12px;letter-spacing:.1em}
+.search-container{margin:0 7px}.search-input{height:38px;padding-left:34px;font-size:11px}.glass-plate{width:34px;height:34px}
+.hero-section{width:calc(100% - 36px);padding:108px 0 12px;display:block}
+.hero-overline{font-size:8px;letter-spacing:.14em;margin-bottom:22px}.overline-index{font-size:8px}
+.hero-title{font-size:clamp(46px,12vw,62px);line-height:.99;margin-bottom:18px}.hero-title .line-2{max-width:440px}
+.hero-subtitle{font-size:13px;max-width:340px}.hero-aside{display:none}
+.main-content{padding:4px 8px 18px}.carousel-stage{height:310px}
+.carousel-stage:before{width:88vw;height:190px;box-shadow:0 0 0 18px rgba(255,255,255,.012),0 0 0 42px rgba(255,255,255,.009)}
+.carousel-stage:after{font-size:7px;bottom:2%;right:4%}
+.movie-card{width:188px;height:278px}.movie-card.pos--1{transform:translateX(-98px) scale(.72) rotate(-5deg)}.movie-card.pos-1{transform:translateX(98px) scale(.72) rotate(5deg)}.movie-card.pos--2{transform:translateX(-150px) scale(.55)}.movie-card.pos-2{transform:translateX(150px) scale(.55)}
+.movie-info{margin-top:14px}.movie-title{font-size:22px}
+.bottom-controls{max-width:380px;gap:7px;margin-top:20px}.bottom-controls .arrow-btn{width:34px;height:38px}
+.bottom-controls .action-btn-glass,.bottom-controls .ai-chat-btn{min-height:42px;padding:10px 11px;font-size:10px;letter-spacing:0}
+.mood-collections{width:calc(100% - 32px);margin:42px auto 52px}.collections-heading{margin-bottom:17px}.collections-heading h2{font-size:30px}
+.collection-card{min-height:175px;padding:20px}.collection-card h3{font-size:23px}
+.catalog-section{padding:38px 16px}.modal-window{width:calc(100% - 24px);padding:24px 18px;max-height:88vh}
+.eye-modal{display:block;overflow-y:auto}.eye-modal-poster{width:100%;height:210px}.eye-modal-content{width:100%;padding:24px 20px}.chat-container{height:min(68vh,500px)}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
 </style>
 </head>
 <body>
@@ -415,8 +508,15 @@ body{background:radial-gradient(ellipse at 12% 18%,rgba(130,45,90,.2),transparen
 </header>
 
 <section class="hero-section">
-  <h1 class="hero-title"><span class="line-1">Иногда</span><span class="line-2">фильм находит нас сам</span></h1>
-  <p class="hero-subtitle">Но чтобы это случилось, нужно прислушаться к себе. Выберите эмоцию — а мы подберём то, что стоит включить</p>
+  <div class="hero-copy">
+    <div class="hero-overline"><span class="overline-mark"></span> КИНО ПО СОСТОЯНИЮ ДУШИ <span class="overline-index">№ 01 / 26</span></div>
+    <h1 class="hero-title"><span class="line-1">Иногда</span><span class="line-2">фильм находит нас сам</span></h1>
+    <p class="hero-subtitle">Не ищи идеальный фильм. Найди то самое чувство — остальное мы возьмём на себя.</p>
+  </div>
+  <aside class="hero-aside" aria-label="О МувиМуд">
+    <span class="hero-aside-rule"></span><span class="hero-aside-label">ТВОЙ ВЕЧЕР</span>
+    <p>Один точный выбор может изменить весь вечер.</p><span class="hero-aside-note">ЛИСТАЙ. ЧУВСТВУЙ. СМОТРИ.</span>
+  </aside>
 </section>
 
 <div class="main-content">
