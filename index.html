@@ -786,7 +786,7 @@ body{
   const GENRE_MAP = { 'драма':'drama','комедия':'comedy','биографический':'biography','военный':'war','исторический':'historical','детектив':'detective','документальный':'documentary','анимация':'animation','фэнтези':'fantasy','приключения':'adventure','семейный':'family','искусство':'art','культура':'culture' };
   const GENRE_LABELS = { animation:'🎨 Анимация', biography:'👤 Биография', war:'⚔️ Военные', historical:'📜 Исторические', detective:'🕵️ Детективы', documentary:'📄 Документальные', drama:'🎬 Драмы', comedy:'😂 Комедии', fantasy:'🧙 Фэнтези', adventure:'🗺️ Приключения', family:'👨‍👩‍👧 Семейные', art:'🎭 Искусство', culture:'📚 Культура' };
   function getFormat(t){ t=(t||'').toLowerCase(); if(t.includes('анимац'))return 'Мультфильм'; if(t.includes('документ'))return 'Документальный'; return 'Фильм'; }
-  function getAge(a){ const ru=(a||[]).find(x=>x.country==='Россия'); return ru?ru.rating:((a&&a[0])?a[0].rating:'18+'); }
+  function getAge(a){ const ru=(a||[]).find(x=>x.country==='Россия'); return ru?.rating||a?.[0]?.rating||''; }
   function getRatingClass(r){ const n=parseFloat(r); return n>=8?'high':n>=7?'medium':'low'; }
 
   function computeKeys(m) {
