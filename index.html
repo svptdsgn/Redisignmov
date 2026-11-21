@@ -680,8 +680,8 @@ body{
     <aside class="filters-panel">
       <div class="filter-tabs-row">
         <div class="filter-tabs">
-          <button class="filter-tab active" onclick="switchFilterTab('main', this)">Быстрый выбор</button>
-          <button class="filter-tab" onclick="switchFilterTab('extra', this)">Точный поиск</button>
+          <button class="filter-tab active" onclick="switchFilterTab('main', this)">Основные</button>
+          <button class="filter-tab" onclick="switchFilterTab('extra', this)">Дополнительные</button>
         </div>
         <button class="filter-search-btn" id="filterSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
       </div>
@@ -731,20 +731,20 @@ body{
       <div id="filter-extra" class="filter-content">
         <div class="filter-section open">
           <div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какой вайб хочется?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-          <div class="filter-section-content"><p class="filter-hint">Поиск по реальному описанию атмосферы, темам и визуальному стилю в карточках фильмов.</p>
-            <input class="filter-text-input" id="filmVibeSearch" type="search" placeholder="Например: меланхоличный, уютный, сюрреалистичный…" autocomplete="off">
+          <div class="filter-section-content"><p class="filter-hint">Поиск только по полю «Настроение» и описанию визуального стиля в JSON.</p>
+            <input class="filter-text-input" id="filmVibeSearch" type="search" placeholder="Например: меланхоличный, ироничный, созерцательный…" autocomplete="off">
           </div>
         </div><div class="filter-divider"></div>        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какой жанр интересен?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="genreFilters"></div></div></div>
         <div class="filter-divider"></div>
 
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Что именно ищешь?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-          <div class="filter-section-content"><p class="filter-hint">По названию, теме, режиссёру, актёру, языку или точной детали из каталога.</p><input class="filter-text-input" id="specificFilmSearch" type="search" placeholder="Например: Годар, французский, 4:3…" autocomplete="off"></div></div>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какая тема интересует?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          <div class="filter-section-content"><p class="filter-hint">По темам, которые прямо указаны в описании фильма.</p><input class="filter-text-input" id="specificFilmSearch" type="search" placeholder="Например: дружба, свобода творчества, взросление…" autocomplete="off"></div></div>
         <div class="filter-divider"></div>
         <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Формат</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="formatFilters"></div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Язык</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="languageFilters"></div></div></div>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Язык оригинала</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="languageFilters"></div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Визуальные характеристики</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content">
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Как выглядит фильм?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content">
           <span class="filter-subtitle">Цвет</span><div class="checkbox-group" id="colorFilters"></div><span class="filter-subtitle">Формат кадра</span><div class="checkbox-group" id="ratioFilters"></div>
         </div></div>        <button class="filters-apply-btn" onclick="applyFilters()">Применить фильтры</button>
         <button class="reset-filters-btn" onclick="resetAllFilters()">Сбросить все фильтры</button>
@@ -872,7 +872,6 @@ body{
       age:getAge(raw.details?.age_ratings), rating:String(raw.ratings?.kinopoisk?.value??0), votes:raw.ratings?.kinopoisk?.votes??0,
       logline:raw.content?.logline||'', synopsis:raw.content?.synopsis||'', mood:raw.content?.mood||'',
       visualStyle:raw.content?.visual_style||'', themes:raw.content?.themes||[],
-      directors:raw.creators?.directors||[], cast:(raw.cast||[]).map(p=>p.name_ru||p.name_original||'').filter(Boolean),
       poster:raw.poster?.path||''
     };
   }
@@ -1123,8 +1122,8 @@ body{
     if(kidsOnly)f=f.filter(m=>Number.isFinite(parseInt(m.age,10))&&parseInt(m.age,10)<=12);
     const vibeQuery=(document.getElementById('filmVibeSearch')?.value||'').trim().toLocaleLowerCase('ru');
     const specificQuery=(document.getElementById('specificFilmSearch')?.value||'').trim().toLocaleLowerCase('ru');
-    const vibeText=m=>[m.mood,m.visualStyle,...m.themes,m.logline,m.synopsis].join(' ').toLocaleLowerCase('ru');
-    const detailText=m=>[m.title,m.originalTitle,m.filmType,...m.languages,...m.directors,...m.cast,...m.themes,m.mood,m.visualStyle,m.logline,m.synopsis].join(' ').toLocaleLowerCase('ru');
+    const vibeText=m=>[m.mood,m.visualStyle].join(' ').toLocaleLowerCase('ru');
+    const detailText=m=>(m.themes||[]).join(' ').toLocaleLowerCase('ru');
     if(vibeQuery)f=f.filter(m=>vibeText(m).includes(vibeQuery));
     if(specificQuery)f=f.filter(m=>detailText(m).includes(specificQuery));
     filteredMovies=f;
