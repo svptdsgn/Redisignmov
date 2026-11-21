@@ -799,6 +799,7 @@ body{
     <div class="catalog-right">
       <!-- СОРТИРОВКА -->
       <div class="catalog-toolbar">
+        <span class="catalog-result-count" id="catalogResultCount" aria-live="polite">Подбираем фильмы…</span>
         <span class="sort-label">Сортировать</span>
         <div class="sort-dropdown" id="sortDropdown">
           <button class="sort-trigger" id="sortTrigger">
@@ -1151,7 +1152,7 @@ body{
     const genres=getActive('genreFilters'); if(genres.length)f=f.filter(m=>m.genres.some(g=>genres.includes(g)));
     const occasions=getActive('occasionFilters'); if(occasions.length)f=f.filter(m=>m.occasions.some(o=>occasions.includes(o)));
     const kidsOnly=document.querySelector('[data-filter="kids"]')?.classList.contains('active');
-    if(kidsOnly)f=f.filter(m=>(parseInt(m.age,10)||18)<=12);
+    if(kidsOnly)f=f.filter(m=>Number.isFinite(parseInt(m.age,10))&&parseInt(m.age,10)<=12);
     const settings=getActive('settingFilters'); if(settings.length)f=f.filter(m=>m.settings.some(s=>settings.includes(s)));
     const twists=getActive('twistFilters'); if(twists.length)f=f.filter(m=>m.twists.some(t=>twists.includes(t)));
     const tempos=getActive('tempoFilters'); if(tempos.length)f=f.filter(m=>tempos.includes(m.tempo));
