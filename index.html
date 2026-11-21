@@ -1126,7 +1126,8 @@ body{
     const matchesSource=(source,query)=>{
       const terms=normalizeSearch(query).split(' ').filter(Boolean);
       const words=normalizeSearch(source).split(' ').filter(Boolean);
-      return terms.length>0&&terms.every(term=>words.some(word=>word.includes(term)||((term.length>=4||word.length>=4)&&(word.startsWith(term)||term.startsWith(word)))));
+      const prefixLength=(a,b)=>{let i=0;while(i<a.length&&i<b.length&&a[i]===b[i])i++;return i;};
+      return terms.length>0&&terms.every(term=>words.some(word=>word===term||prefixLength(word,term)>=4));
     };
     const vibeQuery=document.getElementById('filmVibeSearch')?.value||'';
     const specificQuery=document.getElementById('specificFilmSearch')?.value||'';
