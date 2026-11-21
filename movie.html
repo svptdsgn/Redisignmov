@@ -345,6 +345,46 @@ body{background-color:#09090c;background-image:radial-gradient(ellipse at 12% 16
 @media(max-width:560px){.header{padding:0 12px}.logo-plate{padding:8px 10px}.logo{font-size:12px}.container{padding:88px 16px 42px}.movie-info h1{font-size:34px}.movie-hero{margin-bottom:44px}.footer{padding:30px 18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
+
+/* ===== Точечная полировка страницы фильма ===== */
+.movie-hero{grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);align-items:start}
+.movie-trailer-wrapper{background:#17131a;box-shadow:0 24px 70px rgba(0,0,0,.34)}
+.movie-trailer-wrapper:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(8,7,11,.24))}
+.play-button{z-index:1;width:62px;height:62px;border:1px solid rgba(255,255,255,.3);background:rgba(201,94,104,.9);backdrop-filter:blur(12px)}
+.movie-info h1{max-width:760px;margin-bottom:18px}
+.movie-teaser{row-gap:10px;margin-bottom:26px;color:#b5aeb5}
+.ai-recommendation-block{background:linear-gradient(125deg,rgba(201,94,104,.12),rgba(126,94,155,.09));border:1px solid rgba(210,133,147,.2);border-radius:5px;padding:21px 22px}
+.ai-rec-header{color:#e99aa2;letter-spacing:.13em}
+.ai-rec-text{color:#e8e0e3;line-height:1.72}
+.actions-row{flex-wrap:wrap;gap:9px;margin-bottom:30px}
+.btn-watch,.btn-trailer,.icon-action{height:46px}
+.btn-watch{background:#d16d76;color:#fff;box-shadow:0 8px 24px rgba(158,63,76,.2)}
+.btn-watch:hover{background:#df7c84;color:#fff;box-shadow:0 12px 30px rgba(158,63,76,.28)}
+.btn-trailer,.icon-action{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.15)}
+.icon-action{width:46px}
+.specs{gap:0;border-top:1px solid rgba(255,255,255,.09);padding-top:12px}
+.spec-row{grid-template-columns:104px minmax(0,1fr);gap:14px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+.spec-row:last-child{border-bottom:0}
+.spec-label{font-size:13px;color:#a49ba3}
+.spec-tag{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.1);padding:5px 11px}
+.section-heading,.clips-title,.team-title,.similar-title{font-family:'Playfair Display',Georgia,serif;font-weight:500;letter-spacing:-.025em}
+.about-block,.rate-block,.team-block,.similar-section,.info-section{background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.022));border-color:rgba(255,255,255,.1);box-shadow:0 18px 50px rgba(0,0,0,.12)}
+.about-block{padding:clamp(22px,3vw,34px)}
+.about-text{max-width:70ch;color:#c9c0c5;line-height:1.8}
+.rate-block{padding:26px}
+.rate-value{font-family:'DM Sans',sans-serif;color:#d98b91}
+.rate-btn{border-radius:4px}
+.rate-btn.active{border-color:rgba(227,107,114,.55);color:#ef9ba2;background:rgba(227,107,114,.1)}
+.team-chip,.similar-filter{border-radius:4px}
+.person-avatar{border-radius:4px;background:linear-gradient(145deg,rgba(227,107,114,.12),rgba(166,139,216,.1));border-color:rgba(255,255,255,.12)}
+.card-poster{border-radius:4px;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.card-poster img{transition:transform .35s ease}
+.card:hover .card-poster img{transform:scale(1.035)}
+.fact-card{border-radius:4px;background:rgba(255,255,255,.035)}
+.btn-watch:focus-visible,.btn-trailer:focus-visible,.icon-action:focus-visible,.team-chip:focus-visible,.similar-filter:focus-visible,.rate-btn:focus-visible,a:focus-visible{outline:2px solid #e38b92;outline-offset:3px}
+@media(max-width:900px){.movie-hero{grid-template-columns:1fr}.movie-info{max-width:760px}.spec-row{grid-template-columns:100px minmax(0,1fr)}}
+@media(max-width:560px){.movie-info h1{font-size:clamp(32px,9vw,40px)}.actions-row{gap:8px}.btn-watch,.btn-trailer{padding:0 16px;font-size:13px}.icon-action{width:42px;height:42px}.spec-row{grid-template-columns:1fr;gap:6px;padding:11px 0}.spec-values{gap:6px}.rate-top{gap:12px}.rate-value{font-size:48px}.rate-block,.team-block,.similar-section,.info-section{padding:20px}.about-block{padding:22px}.rate-buttons{gap:8px}.rate-btn{padding:11px 8px;font-size:13px}}
+
 </style>
 </head>
 <body>
