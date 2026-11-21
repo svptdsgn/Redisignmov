@@ -1148,7 +1148,7 @@ body{
     if(p.get('country'))check('countryFilters',p.get('country'));
     if(p.get('age'))check('ageFilters',p.get('age'));
     if(p.get('year'))check('yearFilters',p.get('year'));
-    const needExtra=false;
+    const needExtra=Boolean(p.get('genre'));
     const tabs=document.querySelectorAll('.filter-tab');
     switchFilterTab(needExtra?'extra':'main',needExtra?tabs[1]:tabs[0]);
     applyFilters();
