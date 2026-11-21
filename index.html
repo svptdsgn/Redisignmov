@@ -531,6 +531,9 @@ body{
 .option-chip,.submit-btn,.reset-btn,.chat-input-row input,.chat-input-row button{border-radius:8px}
 @media(max-width:800px){.filters-panel{padding:16px;border-radius:12px}}
 
+
+/* ===== DATA-LED FILTERS ===== */
+.filter-hint{font-size:11px;line-height:1.6;color:#a9a1aa;margin:0 0 10px}.filter-text-input{width:100%;box-sizing:border-box;padding:12px 13px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(5,5,8,.3);color:#f1edf1;font:inherit;font-size:12px;outline:none}.filter-text-input::placeholder{color:#77717c}.filter-text-input:focus{border-color:rgba(211,132,145,.55);box-shadow:0 0 0 3px rgba(211,132,145,.08)}.filter-subtitle{display:block;margin:12px 0 7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#aaa1ac}
 </style>
 </head>
 <body>
@@ -677,8 +680,8 @@ body{
     <aside class="filters-panel">
       <div class="filter-tabs-row">
         <div class="filter-tabs">
-          <button class="filter-tab active" onclick="switchFilterTab('main', this)">Практичное</button>
-          <button class="filter-tab" onclick="switchFilterTab('extra', this)">По настроению</button>
+          <button class="filter-tab active" onclick="switchFilterTab('main', this)">Быстрый выбор</button>
+          <button class="filter-tab" onclick="switchFilterTab('extra', this)">Точный поиск</button>
         </div>
         <button class="filter-search-btn" id="filterSearchToggle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
       </div>
@@ -726,72 +729,24 @@ body{
       </div>
 
       <div id="filter-extra" class="filter-content">
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какое настроение хочется?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="moodFilters">
-          <label class="checkbox-item"><input type="checkbox" value="anxious"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>😰 Тревожное</label>
-          <label class="checkbox-item"><input type="checkbox" value="happy"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>😄 Весёлое</label>
-          <label class="checkbox-item"><input type="checkbox" value="romantic"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💕 Романтичное</label>
-          <label class="checkbox-item"><input type="checkbox" value="sad"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>😢 Грустное</label>
-          <label class="checkbox-item"><input type="checkbox" value="thoughtful"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🤔 Задумчивое</label>
-          <label class="checkbox-item"><input type="checkbox" value="mystic"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🔮 Мистичное</label>
-        </div></div></div>
-        <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какой жанр интересен?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="genreFilters"></div></div></div>
+        <div class="filter-section open">
+          <div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какой вайб хочется?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          <div class="filter-section-content"><p class="filter-hint">Поиск по реальному описанию атмосферы, темам и визуальному стилю в карточках фильмов.</p>
+            <input class="filter-text-input" id="filmVibeSearch" type="search" placeholder="Например: меланхоличный, уютный, сюрреалистичный…" autocomplete="off">
+          </div>
+        </div><div class="filter-divider"></div>        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Какой жанр интересен?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="genreFilters"></div></div></div>
         <div class="filter-divider"></div>
 
-        <!-- ===== СЛУЧАЙ ===== -->
-        <div class="filter-section open"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">На какой случай выбираешь?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="occasionFilters">
-          <label class="checkbox-item"><input type="checkbox" value="family"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👨‍👩‍👧 Семейный вечер</label>
-          <label class="checkbox-item"><input type="checkbox" value="bachelorette"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💃 Девичник</label>
-          <label class="checkbox-item"><input type="checkbox" value="friends"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>👯 С друзьями</label>
-          <label class="checkbox-item"><input type="checkbox" value="sport"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🏆 Про спорт</label>
-          <label class="checkbox-item"><input type="checkbox" value="inspiring"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>✨ Вдохновляющее</label>
-          <label class="checkbox-item"><input type="checkbox" value="date"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💕 Для свидания</label>
-          <label class="checkbox-item"><input type="checkbox" value="alone"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🌙 На одинокий вечер</label>
-          <label class="checkbox-item"><input type="checkbox" value="holiday"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎄 Праздничное</label>
-        </div></div></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Сеттинг</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="settingFilters">
-          <label class="checkbox-item"><input type="checkbox" value="space"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🚀 Космос</label>
-          <label class="checkbox-item"><input type="checkbox" value="racing"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🏎️ Гонки и скорость</label>
-          <label class="checkbox-item"><input type="checkbox" value="pursuit"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🏃 Преследование</label>
-          <label class="checkbox-item"><input type="checkbox" value="house"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🏚️ Неладное в доме</label>
-          <label class="checkbox-item"><input type="checkbox" value="survival"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🏕️ Выживание</label>
-          <label class="checkbox-item"><input type="checkbox" value="gangsters"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🔫 Гангстеры</label>
-          <label class="checkbox-item"><input type="checkbox" value="heist"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💰 Ограбления</label>
-          <label class="checkbox-item"><input type="checkbox" value="90s"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>📼 90-е</label>
-          <label class="checkbox-item"><input type="checkbox" value="art"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎭 Искусство и книги</label>
-        </div></div></div>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Что именно ищешь?</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+          <div class="filter-section-content"><p class="filter-hint">По названию, теме, режиссёру, актёру, языку или точной детали из каталога.</p><input class="filter-text-input" id="specificFilmSearch" type="search" placeholder="Например: Годар, французский, 4:3…" autocomplete="off"></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Сюжетный поворот</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="twistFilters">
-          <label class="checkbox-item"><input type="checkbox" value="ending"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🔄 Неожиданный конец</label>
-          <label class="checkbox-item"><input type="checkbox" value="timeloop"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>⏳ Петля времени</label>
-        </div></div></div>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Формат</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="formatFilters"></div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Темп</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="tempoFilters">
-          <label class="checkbox-item"><input type="checkbox" value="dynamic"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>💥 Динамичный</label>
-          <label class="checkbox-item"><input type="checkbox" value="slow"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🐌 Медленный</label>
-        </div></div></div>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Язык</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="languageFilters"></div></div></div>
         <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Тон и атмосфера</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="toneFilters">
-          <label class="checkbox-item"><input type="checkbox" value="dark"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🌑 Мрачное</label>
-          <label class="checkbox-item"><input type="checkbox" value="light"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>☀️ Светлое</label>
-    
-        </div></div></div>
-        <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Визуальный стиль</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="visualFilters">
-          <label class="checkbox-item"><input type="checkbox" value="bw"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>⚫ Чёрно-белый</label>
-          <label class="checkbox-item"><input type="checkbox" value="color"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎨 Цветной</label>
-          <label class="checkbox-item"><input type="checkbox" value="square"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>📺 Почти квадратный кадр (4:3)</label>
-          <label class="checkbox-item"><input type="checkbox" value="wide"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎬 Широкий экран (2.35:1)</label>
-          <label class="checkbox-item"><input type="checkbox" value="standard"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>📽️ Стандартный (1.85:1)</label>
-        </div></div></div>
-        <div class="filter-divider"></div>
-        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Для эстетов</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content"><div class="checkbox-group" id="aestheticFilters">
-          <label class="checkbox-item"><input type="checkbox" value="niche"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎯 Специфичное / не для всех</label>
-          <label class="checkbox-item"><input type="checkbox" value="visual"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🖼 Визуально необычный</label>
-          <label class="checkbox-item"><input type="checkbox" value="music"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>🎵 Безупречная музыка</label>
-
-        </div></div></div>
-        <button class="filters-apply-btn" onclick="applyFilters()">Применить фильтры</button>
+        <div class="filter-section"><div class="filter-section-header" onclick="toggleFilterSection(this)"><span class="filter-section-title">Визуальные характеристики</span><svg class="filter-section-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="filter-section-content">
+          <span class="filter-subtitle">Цвет</span><div class="checkbox-group" id="colorFilters"></div><span class="filter-subtitle">Формат кадра</span><div class="checkbox-group" id="ratioFilters"></div>
+        </div></div>        <button class="filters-apply-btn" onclick="applyFilters()">Применить фильтры</button>
         <button class="reset-filters-btn" onclick="resetAllFilters()">Сбросить все фильтры</button>
       </div>
     </aside>
@@ -908,13 +863,18 @@ body{
   }
 
   function transformMovie(raw) {
-    const keys=computeKeys(raw); const mood=raw.content?.mood||'';
-    return { id:raw.identification?.kinopoisk_id, title:raw.identification?.title_ru||'', year:raw.identification?.year,
-      format:getFormat(raw.identification?.film_type), countries:raw.details?.countries||[], genresRu:raw.details?.genres||[],
+    return {
+      id:raw.identification?.kinopoisk_id, title:raw.identification?.title_ru||'', originalTitle:raw.identification?.title_original||'',
+      year:raw.identification?.year, format:getFormat(raw.identification?.film_type), filmType:raw.identification?.film_type||'',
+      countries:raw.details?.countries||[], languages:raw.details?.languages||[], color:raw.details?.color||'',
+      aspectRatio:raw.details?.aspect_ratio||'', genresRu:raw.details?.genres||[],
       genres:(raw.details?.genres||[]).map(g=>GENRE_MAP[g.toLowerCase()]||g.toLowerCase()), runtime:raw.details?.runtime_minutes||0,
       age:getAge(raw.details?.age_ratings), rating:String(raw.ratings?.kinopoisk?.value??0), votes:raw.ratings?.kinopoisk?.votes??0,
-      logline:raw.content?.logline||'', synopsis:raw.content?.synopsis||'', mood, vibe:mood.split(/[,;]/)[0].trim(),
-      themes:raw.content?.themes||[], poster:raw.poster?.path||'', ...keys };
+      logline:raw.content?.logline||'', synopsis:raw.content?.synopsis||'', mood:raw.content?.mood||'',
+      visualStyle:raw.content?.visual_style||'', themes:raw.content?.themes||[],
+      directors:raw.creators?.directors||[], cast:(raw.cast||[]).map(p=>p.name_ru||p.name_original||'').filter(Boolean),
+      poster:raw.poster?.path||''
+    };
   }
 
   let movieData=[]; let currentIndex=4; const savedMovies=new Set();
@@ -1129,6 +1089,11 @@ body{
     document.getElementById('genreFilters').innerHTML=genreList.map(g=>`<label class="checkbox-item"><input type="checkbox" value="${g.key}"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>${g.label}</label>`).join('');
     const ages=[...new Set(movieData.map(m=>m.age))].sort((a,b)=>parseInt(a)-parseInt(b));
     document.getElementById('ageFilters').innerHTML=ages.map(a=>`<label class="checkbox-item"><input type="checkbox" value="${a}"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>${a}</label>`).join('');
+    const renderOptions=(id,values)=>{const el=document.getElementById(id);if(!el)return;el.innerHTML=[...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru')).map(v=>{const safe=String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');return '<label class="checkbox-item"><input type="checkbox" value="'+safe+'"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'+safe+'</label>';}).join('');};
+    renderOptions('formatFilters',movieData.map(m=>m.filmType));
+    renderOptions('languageFilters',movieData.flatMap(m=>m.languages));
+    renderOptions('colorFilters',movieData.map(m=>m.color));
+    renderOptions('ratioFilters',movieData.map(m=>m.aspectRatio));
   }
 
   function setupCheckboxHandlers() {
@@ -1138,6 +1103,7 @@ body{
         applyFilters();
       });
     });
+    ['filmVibeSearch','specificFilmSearch'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',applyFilters);});
   }
   function getActive(id){return [...document.querySelectorAll('#'+id+' .checkbox-item input:checked')].map(cb=>cb.value);}
 
@@ -1148,22 +1114,24 @@ body{
     const runtimes=getActive('runtimeFilters'); if(runtimes.length)f=f.filter(m=>(runtimes.includes('short')&&m.runtime<90)||(runtimes.includes('medium')&&m.runtime>=90&&m.runtime<=120)||(runtimes.includes('long')&&m.runtime>120));
     const ratings=getActive('ratingFilters'); if(ratings.length)f=f.filter(m=>{const r=parseFloat(m.rating);return (ratings.includes('high')&&r>=8)||(ratings.includes('medium')&&r>=7&&r<8)||(ratings.includes('low')&&r<7);});
     const ages=getActive('ageFilters'); if(ages.length)f=f.filter(m=>ages.includes(m.age));
-    const moods=getActive('moodFilters'); if(moods.length)f=f.filter(m=>m.moods.some(x=>moods.includes(x)));
     const genres=getActive('genreFilters'); if(genres.length)f=f.filter(m=>m.genres.some(g=>genres.includes(g)));
-    const occasions=getActive('occasionFilters'); if(occasions.length)f=f.filter(m=>m.occasions.some(o=>occasions.includes(o)));
+    const formats=getActive('formatFilters'); if(formats.length)f=f.filter(m=>formats.includes(m.filmType));
+    const languages=getActive('languageFilters'); if(languages.length)f=f.filter(m=>m.languages.some(x=>languages.includes(x)));
+    const colors=getActive('colorFilters'); if(colors.length)f=f.filter(m=>colors.includes(m.color));
+    const ratios=getActive('ratioFilters'); if(ratios.length)f=f.filter(m=>ratios.includes(m.aspectRatio));
     const kidsOnly=document.querySelector('[data-filter="kids"]')?.classList.contains('active');
     if(kidsOnly)f=f.filter(m=>Number.isFinite(parseInt(m.age,10))&&parseInt(m.age,10)<=12);
-    const settings=getActive('settingFilters'); if(settings.length)f=f.filter(m=>m.settings.some(s=>settings.includes(s)));
-    const twists=getActive('twistFilters'); if(twists.length)f=f.filter(m=>m.twists.some(t=>twists.includes(t)));
-    const tempos=getActive('tempoFilters'); if(tempos.length)f=f.filter(m=>tempos.includes(m.tempo));
-    const tones=getActive('toneFilters'); if(tones.length)f=f.filter(m=>m.tones.some(t=>tones.includes(t)));
-    const visual=getActive('visualFilters'); if(visual.length)f=f.filter(m=>m.visualKeys.some(v=>visual.includes(v)));
-    const aesthetics=getActive('aestheticFilters'); if(aesthetics.length)f=f.filter(m=>m.aesthetics.some(a=>aesthetics.includes(a)));
+    const vibeQuery=(document.getElementById('filmVibeSearch')?.value||'').trim().toLocaleLowerCase('ru');
+    const specificQuery=(document.getElementById('specificFilmSearch')?.value||'').trim().toLocaleLowerCase('ru');
+    const vibeText=m=>[m.mood,m.visualStyle,...m.themes,m.logline,m.synopsis].join(' ').toLocaleLowerCase('ru');
+    const detailText=m=>[m.title,m.originalTitle,m.filmType,...m.languages,...m.directors,...m.cast,...m.themes,m.mood,m.visualStyle,m.logline,m.synopsis].join(' ').toLocaleLowerCase('ru');
+    if(vibeQuery)f=f.filter(m=>vibeText(m).includes(vibeQuery));
+    if(specificQuery)f=f.filter(m=>detailText(m).includes(specificQuery));
     filteredMovies=f;
     renderSorted();
   }
 
-  function resetAllFilters(){document.querySelectorAll('.checkbox-item').forEach(i=>{i.classList.remove('active');const inp=i.querySelector('input');if(inp)inp.checked=false;});document.querySelectorAll('.filter-toggle').forEach(t=>t.classList.remove('active'));filteredMovies=movieData;renderSorted();}
+  function resetAllFilters(){document.querySelectorAll('.checkbox-item').forEach(i=>{i.classList.remove('active');const inp=i.querySelector('input');if(inp)inp.checked=false;});document.querySelectorAll('.filter-toggle').forEach(t=>t.classList.remove('active'));['filmVibeSearch','specificFilmSearch'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});filteredMovies=movieData;renderSorted();}
   function switchFilterTab(tab,btn){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.filter-content').forEach(c=>c.classList.remove('active'));btn.classList.add('active');document.getElementById('filter-'+tab).classList.add('active');}
   function toggleFilterSwitch(el){el.classList.toggle('active');if(el.dataset.filter==='kids')applyFilters();}
   function toggleFilterSection(h){h.parentElement.classList.toggle('open');}
