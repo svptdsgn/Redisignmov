@@ -1088,8 +1088,10 @@ body{
     document.getElementById('genreFilters').innerHTML=genreList.map(g=>`<label class="checkbox-item"><input type="checkbox" value="${g.key}"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>${g.label}</label>`).join('');
     const ages=[...new Set(movieData.map(m=>m.age))].sort((a,b)=>parseInt(a)-parseInt(b));
     document.getElementById('ageFilters').innerHTML=ages.map(a=>`<label class="checkbox-item"><input type="checkbox" value="${a}"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>${a}</label>`).join('');
-    const renderOptions=(id,values)=>{const el=document.getElementById(id);if(!el)return;el.innerHTML=[...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru')).map(v=>{const safe=String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');return '<label class="checkbox-item"><input type="checkbox" value="'+safe+'"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'+safe+'</label>';}).join('');};
-    renderOptions('formatFilters',movieData.map(m=>m.filmType));
+    const escapeHTML=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const renderOptions=(id,values,labelFor=v=>v)=>{const el=document.getElementById(id);if(!el)return;el.innerHTML=[...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru')).map(v=>'<label class="checkbox-item"><input type="checkbox" value="'+escapeHTML(v)+'"><span class="checkbox-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'+escapeHTML(labelFor(v))+'</label>').join('');};
+    const formatLabels={'игровой полнометражный фильм':'Игровое кино','анимационный полнометражный фильм':'Анимация','документальный полнометражный фильм':'Документальное кино'};
+    renderOptions('formatFilters',movieData.map(m=>m.filmType),v=>formatLabels[v]||v);
     renderOptions('languageFilters',movieData.flatMap(m=>m.languages));
     renderOptions('colorFilters',movieData.map(m=>m.color));
     renderOptions('ratioFilters',movieData.map(m=>m.aspectRatio));
@@ -1120,12 +1122,18 @@ body{
     const ratios=getActive('ratioFilters'); if(ratios.length)f=f.filter(m=>ratios.includes(m.aspectRatio));
     const kidsOnly=document.querySelector('[data-filter="kids"]')?.classList.contains('active');
     if(kidsOnly)f=f.filter(m=>Number.isFinite(parseInt(m.age,10))&&parseInt(m.age,10)<=12);
-    const vibeQuery=(document.getElementById('filmVibeSearch')?.value||'').trim().toLocaleLowerCase('ru');
-    const specificQuery=(document.getElementById('specificFilmSearch')?.value||'').trim().toLocaleLowerCase('ru');
-    const vibeText=m=>[m.mood,m.visualStyle].join(' ').toLocaleLowerCase('ru');
-    const detailText=m=>(m.themes||[]).join(' ').toLocaleLowerCase('ru');
-    if(vibeQuery)f=f.filter(m=>vibeText(m).includes(vibeQuery));
-    if(specificQuery)f=f.filter(m=>detailText(m).includes(specificQuery));
+    const normalizeSearch=s=>String(s||'').toLocaleLowerCase('ru').replace(/ё/g,'е').replace(/[^a-z0-9а-я:./ ]/gi,' ').replace(/\s+/g,' ').trim();
+    const matchesSource=(source,query)=>{
+      const terms=normalizeSearch(query).split(' ').filter(Boolean);
+      const words=normalizeSearch(source).split(' ').filter(Boolean);
+      return terms.length>0&&terms.every(term=>words.some(word=>word.includes(term)||((term.length>=4||word.length>=4)&&(word.startsWith(term)||term.startsWith(word)))));
+    };
+    const vibeQuery=document.getElementById('filmVibeSearch')?.value||'';
+    const specificQuery=document.getElementById('specificFilmSearch')?.value||'';
+    const vibeText=m=>[m.mood,m.visualStyle].join(' ');
+    const detailText=m=>(m.themes||[]).join(' ');
+    if(vibeQuery.trim())f=f.filter(m=>matchesSource(vibeText(m),vibeQuery));
+    if(specificQuery.trim())f=f.filter(m=>matchesSource(detailText(m),specificQuery));
     filteredMovies=f;
     renderSorted();
   }
