@@ -1141,16 +1141,14 @@ body{
 
   function applyQueryParams() {
     const p=new URLSearchParams(location.search);
-    const want=['genre','country','age','year','mood','occasion'];
+    const want=['genre','country','age','year'];
     if(!want.some(k=>p.get(k)))return;
     const check=(containerId,value)=>{const item=[...document.querySelectorAll('#'+containerId+' .checkbox-item')].find(i=>i.querySelector('input').value===value);if(item){item.classList.add('active');item.querySelector('input').checked=true;}};
     if(p.get('genre'))check('genreFilters',p.get('genre'));
-    if(p.get('mood'))check('moodFilters',p.get('mood'));
-    if(p.get('occasion'))check('occasionFilters',p.get('occasion'));
     if(p.get('country'))check('countryFilters',p.get('country'));
     if(p.get('age'))check('ageFilters',p.get('age'));
     if(p.get('year'))check('yearFilters',p.get('year'));
-    const needExtra=p.get('genre')||p.get('mood')||p.get('occasion');
+    const needExtra=false;
     const tabs=document.querySelectorAll('.filter-tab');
     switchFilterTab(needExtra?'extra':'main',needExtra?tabs[1]:tabs[0]);
     applyFilters();
