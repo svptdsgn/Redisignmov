@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>МувиМуд — Фильм</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
     :root {
         --bg: #08080a;
@@ -315,6 +315,36 @@
         .facts-grid { grid-template-columns: 1fr; }
         .actions-row { flex-wrap: wrap; }
     }
+
+/* ===== MOVIEMOOD EDITORIAL DESIGN SYSTEM ===== */
+:root{--bg:#09090c;--surface:rgba(255,255,255,.045);--surface-hover:rgba(255,255,255,.085);--text-main:#f4f0ed;--text-muted:#9b969d;--border-color:rgba(236,226,225,.11);--border-light:rgba(236,226,225,.2);--accent:#e36b72;--purple:#a68bd8;--purple-dark:#725b9d;--font:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif}
+html{scroll-behavior:smooth}
+body{background-color:#09090c;background-image:radial-gradient(ellipse at 12% 16%,rgba(111,42,54,.16),transparent 32%),radial-gradient(ellipse at 88% 44%,rgba(75,53,105,.12),transparent 34%),linear-gradient(180deg,#111014 0%,#09090c 54%,#0c0b10 100%);background-attachment:fixed}
+.header{height:78px;padding:0 clamp(18px,4vw,64px);background:linear-gradient(180deg,rgba(9,9,12,.94),rgba(9,9,12,.66) 72%,transparent);border-bottom:1px solid rgba(255,255,255,.035)}
+.logo-plate,.glass-plate{border-radius:4px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.14)}
+.logo-plate{padding:10px 14px}.logo-plate:hover{transform:none;background:rgba(255,255,255,.08)}
+.logo{text-shadow:none;letter-spacing:.13em;font-size:14px}.logo sup{color:#e36b72}
+.search-input{border-radius:4px;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.12)}
+.search-input:focus{border-color:rgba(227,107,114,.55);box-shadow:0 0 0 3px rgba(227,107,114,.08)}
+.glass-plate:hover{background:rgba(227,107,114,.12);color:#fff}
+.container{max-width:1240px;padding-top:124px}
+.back-link{color:#b9aeb2}.back-link:hover{color:#fff}
+.movie-hero{gap:clamp(28px,4vw,58px);margin-bottom:68px}
+.movie-trailer-wrapper{border-radius:4px;border-color:rgba(255,255,255,.16);box-shadow:0 28px 75px rgba(0,0,0,.4)}
+.play-button{border-radius:4px;background:#c95e68;box-shadow:0 10px 34px rgba(160,55,67,.3)}
+.movie-trailer-wrapper:hover .play-button{box-shadow:0 14px 40px rgba(160,55,67,.4)}
+.movie-info h1,.section-title,.not-found h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;letter-spacing:-.035em}
+.movie-info h1{font-size:clamp(34px,4vw,54px);line-height:1.04}
+.btn-watch,.action-button,.back-to-top{border-radius:4px}
+.btn-watch{background:#c95e68}
+.section-title{font-size:clamp(27px,3vw,38px)}
+.info-card,.fact-card,.content-card,.detail-card{border-radius:4px}
+.footer{border-color:rgba(255,255,255,.1);color:#817a82}
+.toast{border-radius:4px;background:#17141a}
+@media(max-width:900px){.header{height:64px}.container{padding:100px 20px 56px}.movie-hero{gap:30px}}
+@media(max-width:560px){.header{padding:0 12px}.logo-plate{padding:8px 10px}.logo{font-size:12px}.container{padding:88px 16px 42px}.movie-info h1{font-size:34px}.movie-hero{margin-bottom:44px}.footer{padding:30px 18px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
 </style>
 </head>
 <body>
